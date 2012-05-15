@@ -17,7 +17,7 @@
 	<scm>
 		<url>TODO</url>
 		<connection>TODO</connection>
-		<developerConnection>scm:git:git@svr-acr31-code.cl.cam.ac.uk:lib/pom</developerConnection>
+		<developerConnection>scm:git:git@dtg-code.cl.cam.ac.uk:lib/pom</developerConnection>
 	</scm>
 	<organization>
 		<name>DTG</name>
@@ -71,13 +71,13 @@
 		<repository>
 			<id>dtg-code</id>
 			<name>RepositoryProxy</name>
-			<url>http://svr-acr31-code/nexus/content/repositories/releases</url>
+			<url>http://dtg-maven.cl.cam.ac.uk/content/repositories/releases</url>
 		</repository>
 		<!-- use the following if you ARE using a snapshot version. -->
 		<snapshotRepository>
 			<id>dtg-code</id>
 			<name>RepositoryProxy</name>
-			<url>http://svr-acr31-code/nexus/content/repositories/snapshots</url>
+			<url>http://dtg-maven.cl.cam.ac.uk/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 </project>
