@@ -16,8 +16,8 @@
 	</licenses>
 	<scm>
 		<url>https://github.com/ucam-cl-dtg/dtg-pom</url>
-		<connection>git@github.com:ucam-cl-dtg/dtg-pom.git</connection>
-		<developerConnection>scm:git:git@dtg-code.cl.cam.ac.uk:lib/pom</developerConnection>
+		<connection>scm:git:git@github.com:ucam-cl-dtg/dtg-pom.git</connection>
+		<developerConnection>scm:git:git@github.com:ucam-cl-dtg/dtg-pom.git</developerConnection>
 	</scm>
 	<organization>
 		<name>DTG</name>
