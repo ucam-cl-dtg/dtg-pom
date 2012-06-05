@@ -11,7 +11,7 @@
 	</parent>
 	<artifactId>android</artifactId>
 	<name>DTG Android Parent Pom</name>
-	<version>1.0.0</version>
+	<version>1.0.2</version>
 	<packaging>pom</packaging>
 	<dependencies>
 		<dependency>
@@ -22,37 +22,135 @@
 		</dependency>
 	</dependencies>
 
+	<!--  TODO -->
+	<!--  auto manifest versioning -->
+	<!--  android build numbering -->
+	<!--  zipalign -->
+	<!--  proguard -->
+	<!--  general release strategy -->
+
+	<!--  ************** USAGE INSTRUCTIONS *************** -->
+
+	<!-- How to use: -->
+	<!-- 1) create a new Android project -->
+	<!-- 2) create a pom.xml file that uses this one as it's parent -->
+	<!-- 3) create extra directories src-debug, src-release and config-debug -->
+	<!-- 4) add config-debug/local.properties to gitignore -->
+	<!-- 5) add variables to settings.xml to define the default testing behaviour 
+		of your app and the release information -->
+	<!-- 6) Don't put any key material or any service urls in the source tree 
+		- these should be in settings.xml -->
+	<!-- 7) Document at the top of your POM which variables need to be in settings.xml 
+		and what they mean -->
+	<!-- 8) Import these variables into your code by using variable substitution 
+		in src-release and by using compilesettingsloader.Loader in src-debug -->
+
+	<!-- Settings.xml variables required by this pom-->
+	<!--  android.debug.keystore = location of the keystore containing the android debug key -->
+	<!--  android.debug.keyalias = should be set to androiddebugkey if you want eclipse to play nice -->
+	<!--  android.debug.storepass = should be set to android if you want eclipse to play nice -->
+	
+	<!-- Settings.xml variables which can be used in your program -->
+	<!--  android.debug.mapskey = API key to use if building with the debug key -->
+
+	<!-- Environment variables which should be provided by dependent poms -->
+	<!--  android.release.keystore = location of the keystore containing the signing key -->
+	<!--  android.release.keyalias = alias of the release signing key -->
+	
+	<!-- Invocation-time variables (e.g. command line) -->
+	<!--  storepass = the keystore password for release signing -->
+
+
+	<!-- Example command lines: -->
+
+	<!-- Debug:  mvn clean compile package android:deploy android:run -->
+
+	<!-- Release: mvn -P release -Dstorepass=XXXX clean compile package install -->
+
+
+	<!--  ************** NOTES *************** -->
+
 	<!-- The general strategy here is that one should be able to build and run 
 		from eclipse and from command-line. The eclipse build only generates debug 
 		builds whereas command-line can do either. The Android plugin in eclipse 
 		is the limiting factor since it offers little flexibility about where things 
 		go and so we adopt an Android project layout rather than a Maven project 
-		layout. The principle is that you should be able to check this project out 
-		and run it without making any local mods as long as your general build environment 
-		is setup as standard. When doing a debug build we add src-debug to the build 
-		path which contains the source file with run-time resolved constants for 
-		debug builds - this will look for config-debug/local-properties to see if 
-		you have overridden anything - this file should be used if you have some 
-		_local_ testing requirements which are not to be committed to the main repository. 
-		Otherwise the default values are either in the src-debug files or will be 
-		collected from the build environment. When building in release mode we instead 
-		add src-release to the command line and then use filtering in maven to insert 
-		the constants that we need. The ramifications of this are: if you are using 
-		Maps then you need to programmatically create the maps component so you can 
-		access the API as a constant from java -->
+		layout. -->
 
-	<!-- Some hacks are currently in place to make this work with eclipse. The 
-		big trick is to try to get m2e (the eclipse maven plugin) to automatically 
-		collect the right build path settings from the pom. -->
+	<!-- Profiles: we support either a debug build or a release build. Debug 
+		builds might contain internal information and are not for public consumption. 
+		Builds from eclipse will always be debug builds. Command-line builds can 
+		be either. -->
 
-	<!-- Hack 1: in debug mode we add config-debug/* as a resource and also 
-		to the build path. The maven command line builds interpret the resource part 
-		correctly and copy the contents into the APK. Eclipse doesn't get this and 
-		so instead by adding config-debug to the build path the resources get copied 
-		in automatically instead. In release mode the config-debug directory is ignored. 
-		We can't keep local.properties in the project root directory because you 
-		can't set include/excludes on a src directory setting and so you can't add 
-		the project root as a src directory -->
+	<!-- Build environment: this is defined as the contents of settings.xml 
+		- this file is copied into the apk for debug builds so that settings can 
+		be loaded from it. On release builds it is not copied - instead the relevant 
+		values are inserted by compile time substitution -->
+
+	<!-- Interaction with eclipse: the ideal is that you can choose Maven->Update 
+		build configuration in Eclipse and get a working build. I've experimented 
+		for a while with a more simple setup here and manually fixing the eclipse 
+		setup when it gets things wrong but this is deeply error prone. Also eclipse 
+		seems to decide that it needs an update from time to time and there is no 
+		way to clear the build error this causes without updating the configuration 
+		and then reapplying your manual changes -->
+
+	<!-- Compile time settings: in debug mode these are derived at runtime, 
+		in release mode these are textually inserted into the program. Debug-time 
+		constants should be put in classes in src-debug and resolved using the compilesettingsloader 
+		library provided. Release-time constants should be put in classes in src-release 
+		as literals of the form ${variable} -->
+
+	<!-- Debug-time settings: these are set at runtime so that the eclipse build 
+		can work. To make this work the build system packages up config-debug/local.properties 
+		and ~/.m2/settings.xml into the APK, the Loader class from compilesettingsloader 
+		then resolves the required values at runtime. You should set up your project 
+		so that an unmodified checkout will get sufficient information from settings.xml 
+		to run in test mode - if you then need to make local changes to test specific 
+		cases etc. then you put them in local.properties (don't commit them back) -->
+
+	<!-- Why not use substitution on debug builds too?: This doesn't work with 
+		IDEs. You end up with a source tree of syntactically invalid code which won't 
+		compile. Current status is that eclipse will delegate the filtering to maven 
+		- this is worse because you end up with both the source and destination automatically 
+		added to your build path when you do update project dependencies so you either 
+		have build errors or duplicate classes AND you have to remember to edit the 
+		correct version of the file or it just gets overwritten. -->
+
+	<!-- Why is local.properties hidden in config-debug/?: We have to hack around 
+		eclipse not handling resources properly from maven - the upshot of this is 
+		that debug mode we add config-debug/* as a resource and also to the build 
+		path. The maven command line builds interpret the resource part correctly 
+		and copy the contents into the APK. Eclipse doesn't get this and so instead 
+		by adding config-debug to the build path the resources get copied in automatically 
+		instead. In release mode the config-debug directory is ignored. We can't 
+		keep local.properties in the project root directory because you can't set 
+		include/excludes on a src directory setting and so you can't add the project 
+		root as a src directory -->
+
+	<!-- Signing keys: all debug builds are built with the same debug.key for 
+		all apps. Release builds use a specific key for each app - specify this by 
+		setting the property release.keystore in your pom. All our keystores are 
+		kept in a special repository (obviously not for public release) - do not 
+		put key material in a source code repository. -->
+
+	<!-- Maps API keys: these are inserted by compile time settings. There is 
+		a generic API key to use if testing an app because its signed with our common 
+		debug key - you access this by using the variable android.debug.mapskey in 
+		your code which is defined in settings.xml. Release builds need an API key 
+		matching their signing key - specify this by setting the property for substitution 
+		in settings.xml. This means that you need to create your maps programmatically 
+		rather than in XML so you can use the substituted variables. -->
+
+	<!-- Why not use substitution on the XML too?: This doesn't work because 
+		you need to be able to launch from eclipse which is not applying any filtering. 
+		Putting the literal API debug key in the XML and then filtering it out on 
+		release is not a good idea either because you don't want to leak your API 
+		key to the rest of the world - the whole point of the API key system is to 
+		associate usage with a particular developer (or closed set of developers). 
+		Note: at this time (Jun-2012) the eclipse ADT plugin does not support resource 
+		overlay directories and so its not possible to somehow import some extra 
+		xml from elsewhere and overlay it to get around this problem either -->
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -156,6 +254,31 @@
 						</executions>
 					</plugin>
 					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>2.5</version>
+						<executions>
+							<execution>
+								<id>copy-resources</id>
+								<phase>validate</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/classes</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${user.home}/.m2</directory>
+											<includes>
+												<include>settings.xml</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jarsigner-plugin</artifactId>
 						<configuration>
@@ -205,8 +328,8 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-jarsigner-plugin</artifactId>
 						<configuration>
-							<keystore>${release.keystore}</keystore>
-							<alias>${release.keyalias}</alias>
+							<keystore>${android.release.keystore}</keystore>
+							<alias>${android.release.keyalias}</alias>
 							<storepass>${storepass}</storepass>
 						</configuration>
 					</plugin>
