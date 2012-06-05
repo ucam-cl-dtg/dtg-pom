@@ -123,9 +123,9 @@
 			</activation>
 			<dependencies>
 				<dependency>
-					<groupId>uk.ac.cam.cl.dtg.compilesettingsloader</groupId>
-					<artifactId>CompileSettingsLoader</artifactId>
-					<version>0.0.1-SNAPSHOT</version>
+					<groupId>uk.ac.cam.cl.dtg</groupId>
+					<artifactId>compilesettingsloader</artifactId>
+					<version>[1.0.0,)</version>
 				</dependency>
 			</dependencies>
 			<build>
