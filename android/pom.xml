@@ -5,14 +5,58 @@
 		<groupId>uk.ac.cam.cl.dtg.pom</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.0.1</version>
+		<!-- Disable searching the filesystem for the parent because it doesn't 
+			match our repository layout -->
+		<relativePath></relativePath>
 	</parent>
 	<artifactId>android</artifactId>
 	<name>DTG Android Parent Pom</name>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-android</artifactId>
+			<version>1.6.1-RC1</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- The general strategy here is that one should be able to build and run 
+		from eclipse and from command-line. The eclipse build only generates debug 
+		builds whereas command-line can do either. The Android plugin in eclipse 
+		is the limiting factor since it offers little flexibility about where things 
+		go and so we adopt an Android project layout rather than a Maven project 
+		layout. The principle is that you should be able to check this project out 
+		and run it without making any local mods as long as your general build environment 
+		is setup as standard. When doing a debug build we add src-debug to the build 
+		path which contains the source file with run-time resolved constants for 
+		debug builds - this will look for config-debug/local-properties to see if 
+		you have overridden anything - this file should be used if you have some 
+		_local_ testing requirements which are not to be committed to the main repository. 
+		Otherwise the default values are either in the src-debug files or will be 
+		collected from the build environment. When building in release mode we instead 
+		add src-release to the command line and then use filtering in maven to insert 
+		the constants that we need. The ramifications of this are: if you are using 
+		Maps then you need to programmatically create the maps component so you can 
+		access the API as a constant from java -->
+
+	<!-- Some hacks are currently in place to make this work with eclipse. The 
+		big trick is to try to get m2e (the eclipse maven plugin) to automatically 
+		collect the right build path settings from the pom. -->
+
+	<!-- Hack 1: in debug mode we add config-debug/* as a resource and also 
+		to the build path. The maven command line builds interpret the resource part 
+		correctly and copy the contents into the APK. Eclipse doesn't get this and 
+		so instead by adding config-debug to the build path the resources get copied 
+		in automatically instead. In release mode the config-debug directory is ignored. 
+		We can't keep local.properties in the project root directory because you 
+		can't set include/excludes on a src directory setting and so you can't add 
+		the project root as a src directory -->
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<directory>${basedir}/bin</directory>
 		<sourceDirectory>${basedir}/src</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -85,6 +129,11 @@
 				</dependency>
 			</dependencies>
 			<build>
+				<resources>
+					<resource>
+						<directory>${basedir}/config-debug</directory>
+					</resource>
+				</resources>
 				<plugins>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
@@ -99,6 +148,7 @@
 								</goals>
 								<configuration>
 									<sources>
+										<source>${basedir}/config-debug</source>
 										<source>${basedir}/src-debug</source>
 									</sources>
 								</configuration>
