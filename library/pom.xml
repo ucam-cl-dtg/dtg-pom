@@ -7,7 +7,7 @@
 		<version>1.0.1</version>
 		<!-- Disable searching the filesystem for the parent because it doesn't 
 			match our repository layout -->
-		<relativePath></relativePath>
+		<relativePath>../parent/</relativePath>
 	</parent>
 	<artifactId>library</artifactId>
 	<name>DTG Library parent pom</name>

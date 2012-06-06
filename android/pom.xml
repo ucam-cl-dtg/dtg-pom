@@ -7,7 +7,7 @@
 		<version>1.0.1</version>
 		<!-- Disable searching the filesystem for the parent because it doesn't 
 			match our repository layout -->
-		<relativePath></relativePath>
+		<relativePath>../parent/</relativePath>
 	</parent>
 	<artifactId>android</artifactId>
 	<name>DTG Android Parent Pom</name>
