@@ -64,9 +64,9 @@
 
 	<!-- Example command lines: -->
 
-	<!-- Debug:  mvn clean compile package android:deploy android:run -->
+	<!-- Debug:  mvn clean package android:deploy android:run -->
 
-	<!-- Release: mvn -P release -Dstorepass=XXXX clean compile package install -->
+	<!-- Release: mvn -P release -Dstorepass=XXXX clean install -->
 
 
 	<!--  ************** NOTES *************** -->
