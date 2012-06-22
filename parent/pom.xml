@@ -6,7 +6,7 @@
 	<version>1.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>DTG Parent Pom</name>
-	<description>Parent pom for DTG projects specifing sensible defaults</description>
+	<description>Parent pom for DTG projects specifying sensible defaults</description>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
