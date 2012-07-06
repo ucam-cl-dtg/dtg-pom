@@ -68,6 +68,8 @@
 
 	<!-- Release: mvn -P release -Dstorepass=XXXX clean install -->
 
+	<!-- The binary you want is ${project.artifactId}-aligned.apk -->
+
 
 	<!--  ************** NOTES *************** -->
 
