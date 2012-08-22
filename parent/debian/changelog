@@ -1,0 +1,5 @@
+libdtgparentpom-java (1.0.2-1) precise; urgency=low
+
+  * Initial debian packaging
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 22 Aug 2012 14:53:53 +0100

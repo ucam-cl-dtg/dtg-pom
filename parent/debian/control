@@ -1,0 +1,30 @@
+Source: libdtgparentpom-java
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Daniel Thomas <drt24-debian@srcf.ucam.org>
+Build-Depends: debhelper (>= 7), cdbs, default-jdk, maven-debian-helper (>= 1.5)
+Build-Depends-Indep: default-jdk-doc, libmaven-javadoc-plugin-java 
+Standards-Version: 3.9.2
+Vcs-Git: git://github.com/ucam-cl-dtg/dtg-pom.git
+Vcs-Browser: https://github.com/ucam-cl-dtg/dtg-pom
+Homepage: https://github.com/ucam-cl-dtg/dtg-pom 
+
+Package: libdtgparentpom-java
+Architecture: all
+Depends: ${misc:Depends}, ${maven:Depends}
+Recommends: ${maven:OptionalDepends}
+Suggests: libdtgparentpom-java-doc
+Description: DTG Parent Pom
+ Parent pom for DTG projects specifying sensible defaults
+
+Package: libdtgparentpom-java-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}, ${maven:DocDepends}
+Recommends: ${maven:DocOptionalDepends}
+Suggests: libdtgparentpom-java
+Description: Documentation for DTG Parent Pom
+ Parent pom for DTG projects specifying sensible defaults
+ .
+ This package contains the API documentation of libdtgparentpom-java.
