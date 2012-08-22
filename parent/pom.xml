@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.ac.cam.cl.dtg</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>DTG Parent Pom</name>
 	<description>Parent pom for DTG projects specifying sensible defaults</description>
