@@ -1,3 +1,10 @@
+libdtgparentpom-java (1.0.2-2) precise; urgency=low
+
+  * Don't build api docs as no java code hence no -doc package
+  * Bump standards version (no changes)
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 22 Aug 2012 15:24:43 +0100
+
 libdtgparentpom-java (1.0.2-1) precise; urgency=low
 
   * Initial debian packaging
