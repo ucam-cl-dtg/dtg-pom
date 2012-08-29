@@ -1,3 +1,9 @@
+libdtgparentpom-java (1.0.2-3) precise; urgency=low
+
+  * Include build section of pom in cleaned output
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 29 Aug 2012 13:14:31 +0100
+
 libdtgparentpom-java (1.0.2-2) precise; urgency=low
 
   * Don't build api docs as no java code hence no -doc package
