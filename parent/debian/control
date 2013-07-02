@@ -1,13 +1,13 @@
 Source: libdtgparentpom-java
 Section: java
 Priority: optional
-Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Maintainer: Daniel Thomas <drt24-debian@srcf.ucam.org>
 Uploaders: Daniel Thomas <drt24-debian@srcf.ucam.org>
 Build-Depends: debhelper (>= 7), cdbs, default-jdk, maven-debian-helper (>= 1.5)
 Standards-Version: 3.9.3
 Vcs-Git: git://github.com/ucam-cl-dtg/dtg-pom.git
 Vcs-Browser: https://github.com/ucam-cl-dtg/dtg-pom
-Homepage: https://github.com/ucam-cl-dtg/dtg-pom 
+Homepage: https://github.com/ucam-cl-dtg/dtg-pom
 
 Package: libdtgparentpom-java
 Architecture: all
