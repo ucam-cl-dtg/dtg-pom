@@ -1,3 +1,9 @@
+libdtgparentpom-java (1.0.2-4saucy1) saucy; urgency=low
+
+  * Rebuild for saucy properly
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 15:55:05 +0100
+
 libdtgparentpom-java (1.0.2-4saucy) precise; urgency=low
 
   * Rebuild for saucy
