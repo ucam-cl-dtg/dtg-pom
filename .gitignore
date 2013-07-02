@@ -1,0 +1,7 @@
+*.gz
+*.dsc
+*.deb
+*.build
+*.changes
+*.upload
+*.bz2
