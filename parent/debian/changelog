@@ -1,3 +1,10 @@
+libdtgparentpom-java (1.0.2-4) raring; urgency=low
+
+  * Fix maintainer field
+  * Mostly a rebuild for raring
+
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 15:40:52 +0100
+
 libdtgparentpom-java (1.0.2-3) precise; urgency=low
 
   * Include build section of pom in cleaned output
