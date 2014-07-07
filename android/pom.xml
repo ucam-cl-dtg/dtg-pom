@@ -217,6 +217,10 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin><!-- Work around for https://jira.codehaus.org/browse/MRELEASE-875 also requires git's status.displayCommentPrefix configuration property to be true -->
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4.2</version>
+			</plugin>
 		</plugins>
 	</build>
 
