@@ -13,6 +13,13 @@
 	<name>DTG Android Parent Pom</name>
 	<version>1.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
+
+	<scm>
+		<url>https://github.com/ucam-cl-dtg/dtg-pom</url>
+		<connection>scm:git:git@github.com:ucam-cl-dtg/dtg-pom.git</connection>
+		<developerConnection>scm:git:git@github.com:ucam-cl-dtg/dtg-pom.git</developerConnection>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
