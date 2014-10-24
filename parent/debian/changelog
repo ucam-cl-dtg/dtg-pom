@@ -1,3 +1,9 @@
+libdtgparentpom-java (1.0.2-4utopic) trusty; urgency=low
+
+  * Rebuild for utopic
+
+ -- Oliver Chick <oc243@cam.ac.uk>  Fri, 24 Oct 2014 20:19:46 +0100
+
 libdtgparentpom-java (1.0.2-4trusty) trusty; urgency=low
 
   * Rebuild for trusty
