@@ -1,26 +1,8 @@
-libdtgparentpom-java (1.0.2-4trusty) trusty; urgency=low
+libdtgparentpom-java (1.0.2-4utopic) utopic; urgency=low
 
-  * Rebuild for trusty
+  * Rebuild for utopic
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 29 Apr 2014 10:19:36 +0100
-
-libdtgparentpom-java (1.0.2-4saucy1) saucy; urgency=low
-
-  * Rebuild for saucy properly
-
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 15:55:05 +0100
-
-libdtgparentpom-java (1.0.2-4saucy) precise; urgency=low
-
-  * Rebuild for saucy
-
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 15:43:15 +0100
-
-libdtgparentpom-java (1.0.2-4quantal) quantal; urgency=low
-
-  * Rebuild for quantal
-
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Tue, 02 Jul 2013 15:40:14 +0100
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Mon, 17 Nov 2014 10:31:54 +0000
 
 libdtgparentpom-java (1.0.2-4) raring; urgency=low
 
