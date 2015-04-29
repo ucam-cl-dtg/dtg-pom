@@ -1,8 +1,8 @@
-libdtgparentpom-java (1.0.2-4utopic) utopic; urgency=low
+libdtgparentpom-java (1.0.2-4vivid) vivid; urgency=low
 
-  * Rebuild for utopic
+  * Rebuild for vivid
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Mon, 17 Nov 2014 10:31:54 +0000
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 29 Apr 2015 11:45:10 +0100
 
 libdtgparentpom-java (1.0.2-4) raring; urgency=low
 
