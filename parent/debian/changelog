@@ -1,8 +1,8 @@
-libdtgparentpom-java (1.0.2-4vivid) vivid; urgency=low
+libdtgparentpom-java (1.0.2-4wily) wily; urgency=low
 
-  * Rebuild for vivid
+  * Rebuilt for wily
 
- -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Wed, 29 Apr 2015 11:45:10 +0100
+ -- Daniel Thomas <drt24-debian@srcf.ucam.org>  Thu, 22 Oct 2015 14:06:29 +0100
 
 libdtgparentpom-java (1.0.2-4) raring; urgency=low
 
